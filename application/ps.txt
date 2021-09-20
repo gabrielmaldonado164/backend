@@ -1,0 +1,4 @@
+        "username": "meyuuwwetm",
+        "password": "wlbxgnrpvlhnoby",
+        "home_dir": "/home/jail/home/meyuuwwetm",
+        "domain": "maheca.tk"

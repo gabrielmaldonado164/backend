@@ -4,7 +4,7 @@ from   pathlib import Path
 
 BASE_DIR   = Path(__file__).resolve().parent.parent
 HOSTNAME   = socket.gethostname()
-DEV_HOST   = ['lucas-linux', 'POLN02147', 'lucas-linux3']
+DEV_HOST   = ['lucas-linux', 'POLN02147', 'lucas-linux3','twcentos']
 SECRET_KEY = 'django-insecure-ugd817-)yo#e&h*3###(=)n#=998q$$j5u7$bj6ogh)9(4v1$-'
 
 if HOSTNAME in DEV_HOST:
@@ -77,8 +77,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'backend',
-        'USER': 'root',
-        'PASSWORD': 'satancojealpapa',
+        'USER': 'gabrielm',
+        'PASSWORD': 'gab852mald',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {

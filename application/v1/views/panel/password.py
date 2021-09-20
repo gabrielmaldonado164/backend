@@ -12,10 +12,11 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
+
 # Custom
 from schemas.models.nodos           import Nodos
 
-class LoginAccountApiView(APIView):
+class PasswordPanelApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
@@ -25,31 +26,34 @@ class LoginAccountApiView(APIView):
     permission_classes     = ()
 
 
-    def get(self, request, format=None):
-        req    = request.GET
-        domain = None
-
-        if req.get('domain'):
-            domain = req.get('domain')
-            server = Nodos.objects.get(domain=domain)
+    def get(self,request, format=None):
+        req = request.GET
 
         username = req.get('username')
         password = req.get('password')
+        actual_password = req.get('actual_password')
+        server = Nodos.objects.get(username=username)
 
-        if domain:
+
+        if server:
             params = {
-                'domain'  : domain,
-                'username': username,
-                'password': password
+                'username' : username,
+                'password' : password,
+                'actual_password' : actual_password
             }
-            response = requests.get('http://{nodo}:8000/api/v1/login/'.format(nodo=server.nodo), params=params)
+
+            response = requests.get('http://{nodo}:8000/api/v1/change_password/'.format(nodo=server.nodo), params=params)
+            
         else:
-            params = {
-                'username': username,
-                'password': password
+            response = {
+                'status'  : False,
+                'message' : 'No username found.',
+                'response': None,
+                'error'   : '[ ERROR ] No username provided'
             }
-            response = requests.get('http://127.0.0.1:8000/api/v1/login/', params=params)
 
         response = response.json()
-
         return Response(response)
+
+
+
