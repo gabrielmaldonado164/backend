@@ -3,6 +3,7 @@ from   pathlib import Path
 #from tools.database import Database
 
 BASE_DIR   = Path(__file__).resolve().parent.parent
+print(socket.gethostname())
 HOSTNAME   = socket.gethostname()
 DEV_HOST   = ['lucas-linux', 'POLN02147', 'lucas-linux3','twcentos']
 SECRET_KEY = 'django-insecure-ugd817-)yo#e&h*3###(=)n#=998q$$j5u7$bj6ogh)9(4v1$-'
@@ -16,7 +17,7 @@ else:
     print(" [INFO] RUNNING IN PROD SERVER!")
     ALLOWED_HOSTS = [HOSTNAME]
 
-ALLOWED_HOSTS = []
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -77,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'backend',
-        'USER': 'gabrielm',
+        'USER': 'root',
         'PASSWORD': 'gab852mald',
         'HOST': 'localhost',
         'PORT': '3306',
