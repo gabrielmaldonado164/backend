@@ -76,3 +76,24 @@ python3 /opt/backend/application/manage.py makemigrations
 python3 /opt/backend/application/manage.py makemigrations schemas
 
 python3 /opt/backend/application/manage.py migrate
+
+echo -e "[Unit]
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/backend/application/manage.py runserver 0.0.0.0:80
+#Type=forking
+Restart=always
+StandardOutput=syslog
+TimeoutSec=90
+SyslogIdentifier=backend
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/backend.service
+
+chmod 664 /etc/systemd/system/backend.service
+systemctl daemon-reload
+systemctl start backend.service
