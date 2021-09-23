@@ -8,7 +8,7 @@ from django.urls                         import include
 
 
 # App
-from v1.views.twpanel.nodo               import GetNodesListApiView
+from v1.views.twpanel.nodo.list          import GetNodesListApiView
 #from v1.views.panel.password import PasswordPanelApiView
 
 urlpatterns = [
