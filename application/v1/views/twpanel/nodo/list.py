@@ -27,7 +27,7 @@ class GetNodesListApiView(APIView):
 
 
     def get(self,request, format=None):
-        nodos = Nodo.objects.all()
+        nodos = Nodo.objects.all().values()
         
         response = {
             'status'  : True,
