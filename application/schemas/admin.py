@@ -1,11 +1,14 @@
-from django.contrib import admin
+# -*- coding: utf-8 -*-
+
+# Python
+
+# Django
+from django.contrib      import admin
+
+# App
+from schemas.models.nodo import Nodo
 
 
-"""
-from schemas.models.nodos import Nodos
+# Registers
 
-class NodosAdmin(admin.ModelAdmin):
-    list_display = ['domain', 'username', 'nodo']
-
-admin.site.register(Nodos, NodosAdmin)
-"""
+admin.site.register(Nodo)
