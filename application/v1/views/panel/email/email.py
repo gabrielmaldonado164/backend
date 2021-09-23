@@ -12,8 +12,9 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-#Custom
-from schemas.models.nodos import Nodos
+# App
+from schemas.models.nodo           import Nodo
+from tools.nexus                   import Nexus
 
 
 class EmailPanelApiView(APIView):
@@ -27,9 +28,9 @@ class EmailPanelApiView(APIView):
     permission_classes     = ()
 
     def get(self, request, format=None):
-        req = request.GET
+        req    = request.GET
         domain = req.get('domain')
-
+        nexus  = Nexus()
 
         if not domain:
             response = {
@@ -40,11 +41,9 @@ class EmailPanelApiView(APIView):
             }
             return Response(response)
         
-        server = Nodos.objects.get(domain=domain)
+        server = Nodo.objects.get(domain=nexus.get_account_server(domain))
 
-        params = {
-            'domain' : domain,
-        }
+        params = { 'domain' : domain }
 
         response = requests.get('http://{nodo}:8000/api/v1/email/get_email_accounts/'.format(nodo=server.name))
 

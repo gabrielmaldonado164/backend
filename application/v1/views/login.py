@@ -13,7 +13,9 @@ from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
 # Custom
-from schemas.models.nodos           import Nodos
+from schemas.models.nodo           import Nodo
+from tools.nexus                   import Nexus
+
 
 class LoginAccountApiView(APIView):
     authentication_classes = (
@@ -31,7 +33,8 @@ class LoginAccountApiView(APIView):
 
         if req.get('domain'):
             domain = req.get('domain')
-            server = Nodos.objects.get(domain=domain)
+            nexus  = Nexus()
+            server = Nodo.objects.get(name=nexus.get_account_server(domain))
 
         username = req.get('username')
         password = req.get('password')
@@ -42,7 +45,7 @@ class LoginAccountApiView(APIView):
                 'username': username,
                 'password': password
             }
-            response = requests.get('http://{nodo}:8000/api/v1/login/'.format(nodo=server.nodo), params=params)
+            response = requests.get('http://{nodo}:8000/api/v1/login/'.format(nodo=server.name), params=params)
         else:
             params = {
                 'username': username,
