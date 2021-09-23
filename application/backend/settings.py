@@ -1,6 +1,8 @@
 import socket
 from   pathlib import Path
-#from tools.database import Database
+from   tools.database import Database
+
+database = Database()
 
 BASE_DIR   = Path(__file__).resolve().parent.parent
 print(socket.gethostname())
@@ -28,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'tools',
     'schemas',
     'v1'
 ]
@@ -78,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'backend',
-        'USER': 'root',
-        'PASSWORD': 'gab852mald',
+        'USER': database.get_mysql_user(),
+        'PASSWORD': database.get_mysql_password(),
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
