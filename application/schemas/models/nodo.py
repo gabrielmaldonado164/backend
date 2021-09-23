@@ -10,7 +10,7 @@ from django.utils.translation   import ugettext_lazy as _
 class Nodo(models.Model):
     name       = models.CharField(verbose_name=_(u'Nombre'), max_length=255)
     ipaddress  = models.CharField(verbose_name=_(u'Direccion IP'), max_length=255)
-    created_at = models.DateTimeField(verbose_name=_(u'Fecha de creacion'), auto_now_add=True)
+    created_at = models.DateField(verbose_name=_(u'Fecha de creacion'), auto_now_add=True)
 
     class Meta:
         verbose_name        = _(u"Nodo")
