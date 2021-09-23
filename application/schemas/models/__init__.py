@@ -1,1 +1,8 @@
-from schemas.models.nodos import Nodos
+# -*- coding: utf-8 -*-
+
+# Python
+
+# Django
+
+# App
+from schemas.models.nodo import Nodo

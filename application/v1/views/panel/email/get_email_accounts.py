@@ -13,8 +13,8 @@ from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
 #Custom
-from schemas.models.nodos import Nodos
-
+from schemas.models.nodo           import Nodo
+from tools.nexus                   import Nexus
 
 class GetEmailAccountsApiView(APIView):
 
@@ -27,9 +27,9 @@ class GetEmailAccountsApiView(APIView):
     permission_classes     = ()
 
     def get(self, request, format=None):
-        req = request.GET
+        req    = request.GET
         domain = req.get('domain')
-
+        nexus  = Nexus()
 
         if not domain:
             response = {
@@ -40,13 +40,13 @@ class GetEmailAccountsApiView(APIView):
             }
             return Response(response)
         
-        server = Nodos.objects.get(domain=domain)
+        server = Nodo.objects.get(name=nexus.get_account_server(domain))
 
         params = {
             'domain' : domain,
         }
 
-        response = requests.get('http://{nodo}:8000/api/v1/email/get_email_accounts/'.format(nodo=server.nodo), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/email/get_email_accounts/'.format(nodo=server.name), params=params)
         response = response.json()
 
         return Response(response)

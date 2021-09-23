@@ -12,9 +12,8 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-#Custom
-
-from schemas.models.nodos import Nodos
+# App
+from schemas.models.nodo           import Nodo
 
 class CreateEmailAccountsApiView(APIView):
     authentication_classes = (
@@ -26,11 +25,12 @@ class CreateEmailAccountsApiView(APIView):
     permission_classes     = ()
 
     def get(self, request, format=None):
-        req = request.GET
-        domain = req.get('domain')
+        req      = request.GET
+        domain   = req.get('domain')
         username = req.get('username')
         password = req.get('password')
-        quota = None
+        quota    = None
+        nexus    = Nexus()
 
         if not domain:
             response = {
@@ -65,7 +65,8 @@ class CreateEmailAccountsApiView(APIView):
         
 
         server = Nodos.objects.get(domain=domain)
-        
+        server = Nodo.objects.get(domain=nexus.get_account_server(domain))
+
         params = {
             'domain' : domain,
             'username' : username,
@@ -74,7 +75,7 @@ class CreateEmailAccountsApiView(APIView):
         }
 
 
-        response = requests.get('http://{nodo}:8000/api/v1/email/create_email_account/'.format(nodo=server.nodo), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/email/create_email_account/'.format(nodo=server.name), params=params)
         response = response.json()
 
         return Response(response)
