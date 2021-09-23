@@ -8,11 +8,12 @@ from django.urls                         import include
 
 
 # App
+from v1.views.twpanel.nodo.add           import AddNodesApiView
 from v1.views.twpanel.nodo.list          import GetNodesListApiView
 #from v1.views.panel.password import PasswordPanelApiView
 
 urlpatterns = [
-    #path('password/', PasswordPanelApiView.as_view(), name='password_panel'),
-    path('list-nodos/', GetNodesListApiView.as_view(), name='list_nodos')
+    path('add-nodos/', AddNodesApiView.as_view(), name='add_nodos'),
+    path('list-nodos/', GetNodesListApiView.as_view(), name='list_nodos'),
 ]
 
