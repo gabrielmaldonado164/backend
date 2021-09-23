@@ -76,3 +76,5 @@ python3 /opt/backend/application/manage.py makemigrations
 python3 /opt/backend/application/manage.py makemigrations schemas
 
 python3 /opt/backend/application/manage.py migrate
+
+
