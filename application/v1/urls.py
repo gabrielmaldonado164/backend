@@ -12,7 +12,6 @@ from v1.views.login              import LoginAccountApiView
 # Testing
 
 urlpatterns = [
-    path('create_account/', CreateAccountApiView.as_view(), name='create_account_api_view'),
     path('login/', LoginAccountApiView.as_view(), name='login_api_view'),
 
     path('panel/', include('v1.views.panel.urls')),
