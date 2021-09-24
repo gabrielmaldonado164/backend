@@ -24,7 +24,7 @@ class CreateAccountApiView(APIView):
     permission_classes     = ()
 
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         messages_list = []
         account_info  = []
         error_list    = []
@@ -48,7 +48,7 @@ class CreateAccountApiView(APIView):
                     'domain': domain
                 }
 
-            response = requests.get('http://127.0.0.1:8000/api/v1/create_account/', params=params)
+            response = requests.get('http://nodo1.magiosteam.com:8000/api/v1/create_account/', params=params)
             response = response.json()
 
             status        = response['status']
