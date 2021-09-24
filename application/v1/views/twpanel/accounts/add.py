@@ -30,7 +30,7 @@ class AddAccountApiView(APIView):
         error_list    = []
         status        = False
 
-        req = request.GET
+        req = request.POST
 
         if req.get('domain'):
             domain = req.get('domain')
