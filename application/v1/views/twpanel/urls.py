@@ -18,7 +18,7 @@ urlpatterns = [
     path('add-nodos/', AddNodesApiView.as_view(), name='add_nodos'),
     path('list-nodos/', GetNodesListApiView.as_view(), name='list_nodos'),
 
-    path('add-accounts/', AddAccountApiView.as_view(), name="add_accounts")
-    path('list-accounts/', GetAccountsListApiView.as_view(), name='list_accounts')
+    path('add-accounts/', AddAccountApiView.as_view(), name="add_accounts"),
+    path('list-accounts/', GetAccountsListApiView.as_view(), name='list_accounts'),
 ]
 
