@@ -16,7 +16,7 @@ from rest_framework.views          import APIView
 # Custom
 from schemas.models.nodo           import Nodo
 
-class GetNodesListApiView(APIView):
+class GetAccountsListApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
