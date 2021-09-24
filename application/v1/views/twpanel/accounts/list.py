@@ -38,7 +38,7 @@ class GetAccountsListApiView(APIView):
                 account_list.append(
                     {
                         'nodo'      : nodo.name,
-                        'ipaddress' : nodo.ip,
+                        'ipaddress' : nodo.ipaddress,
                         'accounts'  : response['response']
                     }
                 )
