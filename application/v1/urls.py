@@ -7,8 +7,8 @@ from django.urls                 import path
 from django.urls                 import include
 
 # Custom
-from v1.views.create_account     import CreateAccountApiView
 from v1.views.login              import LoginAccountApiView
+
 # Testing
 
 urlpatterns = [
