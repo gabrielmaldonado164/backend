@@ -31,7 +31,7 @@ class GetAccountsListApiView(APIView):
         
         account_list = []
         for nodo in nodos:
-            response = requests.get("http://{nodo}:8000/api/v1/list-accounts/")
+            response = requests.get("http://{nodo}:8000/api/v1/list-accounts/".format(nodo=nodo.name))
             response = response.json()
 
             if response['status']:
