@@ -12,7 +12,8 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-# Custom
+# App
+from schemas.models.nodo           import Nodo
 
 class AddAccountApiView(APIView):
     authentication_classes = (
@@ -48,7 +49,9 @@ class AddAccountApiView(APIView):
                     'domain': domain
                 }
 
-            response = requests.get('http://nodo1.magiosteam.com:8000/api/v1/create_account/', params=params)
+            nodo = Nodo.objects.all().order_by('total_accounts')[0]
+
+            response = requests.get('http://{nodo}:8000/api/v1/create_account/'.format(nodo=nodo.name), params=params)
             response = response.json()
 
             status        = response['status']

@@ -5,4 +5,4 @@
 # Django
 
 # App
-from schemas.models.nodo import Nodo
+from schemas.models.nodo    import Nodo
