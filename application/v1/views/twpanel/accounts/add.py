@@ -14,7 +14,7 @@ from rest_framework.views          import APIView
 
 # Custom
 
-class CreateAccountApiView(APIView):
+class AddAccountApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
