@@ -27,7 +27,7 @@ class GetAccountsListApiView(APIView):
 
 
     def get(self,request, format=None):
-        nodos = Nodo.objects.all().values()
+        nodos = Nodo.objects.all()
         
         account_list = []
         for nodo in nodos:
