@@ -63,7 +63,7 @@ class PhpVersionApiView(APIView):
                 'username' : username,
             }
 
-            response = requests.get('http://{nodo}:8000/api/v1/panel/php/get_php_version/'.format(nodo=server.name), data=params)
+            response = requests.get('http://{nodo}:8000/api/v1/panel/php/get_php_version/'.format(nodo=server.name), params=params)
             
         else:
             response = {
