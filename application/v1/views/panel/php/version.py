@@ -17,7 +17,7 @@ from rest_framework.views          import APIView
 from schemas.models.nodo           import Nodo
 from tools.nexus                   import Nexus
 
-class PhpIniApiView(APIView):
+class PhpVersionApiView(APIView):
 
     authentication_classes = (
         BasicAuthentication,
