@@ -75,7 +75,7 @@ class CreateEmailAccountsApiView(APIView):
         }
 
 
-        response = requests.get('http://{nodo}:8000/api/v1/email/create_email_account/'.format(nodo=server.name), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/panel/email/create_email_account/'.format(nodo=server.name), params=params)
         response = response.json()
 
         return Response(response)

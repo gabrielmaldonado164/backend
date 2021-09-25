@@ -45,13 +45,13 @@ class LoginAccountApiView(APIView):
                 'username': username,
                 'password': password
             }
-            response = requests.get('http://{nodo}:8000/api/v1/login/'.format(nodo=server.name), params=params)
+            response = requests.get('http://{nodo}:8000/api/v1/panel/login/'.format(nodo=server.name), params=params)
         else:
             params = {
                 'username': username,
                 'password': password
             }
-            response = requests.get('http://127.0.0.1:8000/api/v1/login/', params=params)
+            response = requests.get('http://127.0.0.1:8000/api/v1/panel/login/', params=params)
 
         response = response.json()
 

@@ -44,7 +44,7 @@ class PasswordPanelApiView(APIView):
                 'actual_password' : actual_password
             }
 
-            response = requests.get('http://{nodo}:8000/api/v1/change_password/'.format(nodo=server.name), params=params)
+            response = requests.get('http://{nodo}:8000/api/v1/panel/password/change/'.format(nodo=server.name), params=params)
             
         else:
             response = {

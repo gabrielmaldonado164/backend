@@ -45,7 +45,7 @@ class EmailPanelApiView(APIView):
 
         params = { 'domain' : domain }
 
-        response = requests.get('http://{nodo}:8000/api/v1/email/get_email_accounts/'.format(nodo=server.name))
+        response = requests.get('http://{nodo}:8000/api/v1/panel/email/get_email_accounts/'.format(nodo=server.name))
 
         return Response(response)
 
