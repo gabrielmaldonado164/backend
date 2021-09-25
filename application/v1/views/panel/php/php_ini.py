@@ -33,6 +33,7 @@ class PhpIniApiView(APIView):
         domain   = req.get('domain')
         version  = req.get('version')
         username = req.get('username')
+        nexus    = Nexus()
 
         if not domain:
             response = {
@@ -93,6 +94,7 @@ class PhpIniApiView(APIView):
         username        = req.get('username')
         version         = req.get('version')
         php_ini         = req.get('php_ini ')
+        nexus           = Nexus()
         
         if not domain:
             response = {
