@@ -16,6 +16,7 @@ urlpatterns = [
     path('email/',    include('v1.views.panel.email.urls')),
     path('mysql/',    include('v1.views.panel.mysql.urls')),
     path('password/', include('v1.views.panel.password.urls')),
+    path('php/',      include('v1.views.panel.php.urls')),
 
 ]
 
