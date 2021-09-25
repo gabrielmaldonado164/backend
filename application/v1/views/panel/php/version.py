@@ -66,9 +66,9 @@ class PhpVersionApiView(APIView):
         else:
             response = {
                 'status'  : False,
-                'message' : 'No username found.',
+                'message' : 'No server found.',
                 'response': None,
-                'error'   : '[ ERROR ] No username provided'
+                'error'   : '[ ERROR ] No server provided'
             }
 
         response = response.json()
