@@ -73,7 +73,7 @@ class PhpIniApiView(APIView):
                 'version' : version
             }
 
-            response = requests.get('http://{nodo}:8000/api/v1/panel/php/get_php_ini/', params=params)
+            response = requests.get('http://{nodo}:8000/api/v1/panel/php/get_php_ini/'.format(server.name), params=params)
 
         else:
             response = {
