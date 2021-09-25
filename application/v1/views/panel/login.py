@@ -27,8 +27,8 @@ class LoginAccountApiView(APIView):
     permission_classes     = ()
 
 
-    def post(self, request, format=None):
-        req    = request.POST
+    def get(self, request, format=None):
+        req    = request.GET
         domain = None
 
         if req.get('domain'):
