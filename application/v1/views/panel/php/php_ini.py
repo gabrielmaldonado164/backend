@@ -84,7 +84,7 @@ class PhpIniApiView(APIView):
 
         response = response.json()
 
-        response Response(response)
+        return Response(response)
 
     def post(self,request, format=None):
         req = request.POST
