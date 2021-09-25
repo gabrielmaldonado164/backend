@@ -17,7 +17,7 @@ from rest_framework.views          import APIView
 from schemas.models.nodo           import Nodo
 from tools.nexus                   import Nexus
 
-class PasswordPanelApiView(APIView):
+class PasswordChangeApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
@@ -27,8 +27,8 @@ class PasswordPanelApiView(APIView):
     permission_classes     = ()
 
 
-    def get(self,request, format=None):
-        req = request.GET
+    def post(self,request, format=None):
+        req = request.POST
 
         domain          = req.get('domain')
         username        = req.get('username')
@@ -44,7 +44,7 @@ class PasswordPanelApiView(APIView):
                 'actual_password' : actual_password
             }
 
-            response = requests.get('http://{nodo}:8000/api/v1/panel/password/change/'.format(nodo=server.name), params=params)
+            response = requests.post('http://{nodo}:8000/api/v1/panel/password/change/'.format(nodo=server.name), params=params)
             
         else:
             response = {
