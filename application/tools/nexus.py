@@ -14,6 +14,6 @@ class Nexus(object):
 
 		#Hardcodeado hasta la muerte xd
 		hostname = socket.gethostname()
-		hostname = hostname.split('.')[1] + '.' hostname.split('.')[2]
+		hostname = hostname.split('.')[1] + '.' + hostname.split('.')[2]
 		return "nodo1.{}".format(hostname)
 		
