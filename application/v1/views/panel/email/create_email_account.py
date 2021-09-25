@@ -14,6 +14,7 @@ from rest_framework.views          import APIView
 
 # App
 from schemas.models.nodo           import Nodo
+from tools.nexus                   import Nexus
 
 class CreateEmailAccountsApiView(APIView):
     authentication_classes = (
@@ -68,10 +69,10 @@ class CreateEmailAccountsApiView(APIView):
         server = Nodo.objects.get(domain=nexus.get_account_server(domain))
 
         params = {
-            'domain' : domain,
+            'domain'   : domain,
             'username' : username,
             'password' : password,
-            'quota' : quota
+            'quota'    : quota
         }
 
 
