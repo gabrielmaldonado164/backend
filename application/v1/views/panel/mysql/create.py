@@ -67,7 +67,6 @@ class CreateMysqlDatabaseApiView(APIView):
             'dbname' : dbname,
         }
 
-
         response = requests.get('http://{nodo}:8000/api/v1/panel/mysql/create_database/'.format(nodo=server.name), params=params)
         response = response.json()
 

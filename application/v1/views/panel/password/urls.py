@@ -7,9 +7,9 @@ from django.urls                    import path
 from django.urls                    import include
 
 # App
-from v1.views.panel.password.change import PasswordPanelApiView
+from v1.views.panel.password.change import PasswordChangeApiView
 
 urlpatterns = [
-    path('change/', PasswordChangeApiView.as_view(), name='password_panel'),
+    path('change/', PasswordChangeApiView.as_view(), name='password_change_api_view'),
 ]
 
