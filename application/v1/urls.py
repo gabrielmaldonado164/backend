@@ -11,6 +11,5 @@ from django.urls import include
 urlpatterns = [
     path('panel/', include('v1.views.panel.urls')),
     path('twpanel/', include('v1.views.twpanel.urls')),
-    path('email/', include('v1.views.panel.email.urls')),
 ]
 
