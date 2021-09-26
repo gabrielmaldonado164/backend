@@ -29,7 +29,7 @@ class Script(object):
 
                 print("\t[ OK ] Total de sitios en {nodo}: {total}".format(nodo=nodo, total=total))
             except Exception as e:
-                print("\t[ ERROR ] {error}".format(e))
+                print("\t[ ERROR ] {error}".format(error=e))
 
 
 
