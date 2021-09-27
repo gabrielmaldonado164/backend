@@ -135,7 +135,7 @@ class PhpIniApiView(APIView):
             }
 
             return Response(response)
-
+        print("CULO")
         server = Nodo.objects.get(name=nexus.get_account_server(domain=domain))
         
         if server:
