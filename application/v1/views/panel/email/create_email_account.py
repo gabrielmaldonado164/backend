@@ -12,8 +12,9 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-# App
+# Custom
 from schemas.models.nodo           import Nodo
+from tools.nexus                   import Nexus
 
 class CreateEmailAccountsApiView(APIView):
     authentication_classes = (
@@ -64,7 +65,7 @@ class CreateEmailAccountsApiView(APIView):
             quota = req.get('quota')
         
 
-        server = Nodos.objects.get(domain=domain)
+        #server = Nodo.objects.get(domain=domain)
         server = Nodo.objects.get(domain=nexus.get_account_server(domain))
 
         params = {
@@ -77,5 +78,6 @@ class CreateEmailAccountsApiView(APIView):
 
         response = requests.get('http://{nodo}:8000/api/v1/email/create_email_account/'.format(nodo=server.name), params=params)
         response = response.json()
+        print(response)
 
         return Response(response)

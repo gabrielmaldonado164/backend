@@ -13,5 +13,5 @@ class Nexus(object):
 
 		#Hardcodeado hasta la muerte xd
 		
-		return "nodo1.localdomain"
+		return "nodo1.maheca.tk"
 		

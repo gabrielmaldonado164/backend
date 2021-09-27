@@ -42,9 +42,7 @@ class GetEmailAccountsApiView(APIView):
         
         server = Nodo.objects.get(name=nexus.get_account_server(domain))
 
-        params = {
-            'domain' : domain,
-        }
+        params = {'domain' : domain}
 
         response = requests.get('http://{nodo}:8000/api/v1/email/get_email_accounts/'.format(nodo=server.name), params=params)
         response = response.json()
