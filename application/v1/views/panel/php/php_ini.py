@@ -96,11 +96,6 @@ class PhpIniApiView(APIView):
         php_ini         = req.get('php_ini')
         nexus           = Nexus()
         
-        print(domain)
-        print(username)
-        print(version)
-        print(php_ini)
-
         if not domain:
             response = {
                 'status'  : False,
