@@ -114,8 +114,9 @@ class PhpVersionApiView(APIView):
             }
 
             return Response(response)
-
         server = Nodo.objects.get(name=nexus.get_account_server(domain=domain))
+        print(domain)
+        print(server)
         
         if server:
             params = {
