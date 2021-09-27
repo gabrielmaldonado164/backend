@@ -90,8 +90,6 @@ class PhpIniApiView(APIView):
     def post(self,request, format=None):
         req = request.POST
 
-        print(req)
-
         domain          = req.get('domain')
         username        = req.get('username')
         version         = req.get('version')
