@@ -117,8 +117,6 @@ class PhpVersionApiView(APIView):
 
             return Response(response)
         server = Nodo.objects.get(name=nexus.get_account_server(domain=domain))
-        print(domain)
-        print(server)
         
         if server:
             params = {
@@ -126,7 +124,7 @@ class PhpVersionApiView(APIView):
                 'version'  : version
             }
 
-            response = requests.get('http://{nodo}:8000/api/v1/panel/php/change_php_version/'.format(nodo=server.name), params=params)
+            response = requests.post('http://{nodo}:8000/api/v1/panel/php/change_php_version/'.format(nodo=server.name), data=params)
             
         else:
             response = {
