@@ -12,12 +12,11 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-#Custom
+# App
 from schemas.models.nodo           import Nodo
 from tools.nexus                   import Nexus
 
-class GetEmailAccountsApiView(APIView):
-
+class CreateMysqlDatabaseApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
@@ -27,9 +26,30 @@ class GetEmailAccountsApiView(APIView):
     permission_classes     = ()
 
     def get(self, request, format=None):
-        req    = request.GET
+        req      = request.GET
         domain = req.get('domain')
-        nexus  = Nexus()
+        username = req.get('username')
+        dbname   = req.get('dbname')
+        nexus    = Nexus()
+
+        if not username:
+            response = {
+                'status'  : False,
+                'message' : 'No username found.',
+                'response': None,
+                'error'   : '[ ERROR ] No username provided'
+            }
+            return Response(response)
+        
+
+        if not dbname:
+            response = {
+                'status'  : False,
+                'message' : 'No dbname found.',
+                'response': None,
+                'error'   : '[ ERROR ] No dbname provided'
+            }
+            return Response(response)
 
         if not domain:
             response = {
@@ -42,10 +62,12 @@ class GetEmailAccountsApiView(APIView):
         
         server = Nodo.objects.get(name=nexus.get_account_server(domain))
 
-        params = {'domain' : domain}
+        params = {
+            'username' : username,
+            'dbname' : dbname,
+        }
 
-        response = requests.get('http://{nodo}:8000/api/v1/panel/email/get_email_accounts/'.format(nodo=server.name), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/panel/mysql/create_database/'.format(nodo=server.name), params=params)
         response = response.json()
 
         return Response(response)
-

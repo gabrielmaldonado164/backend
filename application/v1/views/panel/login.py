@@ -27,7 +27,7 @@ class LoginAccountApiView(APIView):
     permission_classes     = ()
 
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         req    = request.GET
         domain = None
 
@@ -51,8 +51,9 @@ class LoginAccountApiView(APIView):
                 'username': username,
                 'password': password
             }
-            response = requests.get('http://127.0.0.1:8000/api/v1/panel/login/', params=params)
+            response = requests.get('http://127.0.0.1:8000/api/v1/login/', params=params)
 
+        print(response.text)
         response = response.json()
 
         return Response(response)

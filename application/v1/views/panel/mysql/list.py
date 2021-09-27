@@ -16,7 +16,7 @@ from rest_framework.views          import APIView
 from schemas.models.nodo           import Nodo
 from tools.nexus                   import Nexus
 
-class GetEmailAccountsApiView(APIView):
+class ListMySqlDatabasesApiView(APIView):
 
     authentication_classes = (
         BasicAuthentication,
@@ -27,24 +27,27 @@ class GetEmailAccountsApiView(APIView):
     permission_classes     = ()
 
     def get(self, request, format=None):
-        req    = request.GET
-        domain = req.get('domain')
-        nexus  = Nexus()
+        req      = request.GET
+        username = req.get('username')
+        domain   = req.get('domain')
+        nexus    = Nexus()
 
-        if not domain:
+        if not username or not domain:
             response = {
                 'status'  : False,
-                'message' : 'No domain found.',
+                'message' : 'No username / domain found.',
                 'response': None,
-                'error'   : '[ ERROR ] No domain provided'
+                'error'   : '[ ERROR ] No username / domain provided'
             }
             return Response(response)
         
-        server = Nodo.objects.get(name=nexus.get_account_server(domain))
+        server = Nodo.objects.get(name=nexus.get_account_server(username))
 
-        params = {'domain' : domain}
+        params = {
+            'username' : username,
+        }
 
-        response = requests.get('http://{nodo}:8000/api/v1/panel/email/get_email_accounts/'.format(nodo=server.name), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/panel/mysql/get_databases/'.format(nodo=server.name), params=params)
         response = response.json()
 
         return Response(response)

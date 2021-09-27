@@ -64,19 +64,17 @@ class CreateEmailAccountsApiView(APIView):
         if req.get('quota'):
             quota = req.get('quota')
         
-
-        #server = Nodo.objects.get(domain=domain)
-        server = Nodo.objects.get(domain=nexus.get_account_server(domain))
+        server = Nodo.objects.get(name=nexus.get_account_server(domain))
 
         params = {
-            'domain' : domain,
+            'domain'   : domain,
             'username' : username,
             'password' : password,
-            'quota' : quota
+            'quota'    : quota
         }
 
 
-        response = requests.get('http://{nodo}:8000/api/v1/email/create_email_account/'.format(nodo=server.name), params=params)
+        response = requests.get('http://{nodo}:8000/api/v1/panel/email/create_email_account/'.format(nodo=server.name), params=params)
         response = response.json()
         print(response)
 

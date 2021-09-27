@@ -12,9 +12,10 @@ from rest_framework.permissions    import IsAuthenticated
 from rest_framework.response       import Response
 from rest_framework.views          import APIView
 
-# Custom
+# App
+from schemas.models.nodo           import Nodo
 
-class CreateAccountApiView(APIView):
+class AddAccountApiView(APIView):
     authentication_classes = (
         BasicAuthentication,
         SessionAuthentication,
@@ -24,13 +25,13 @@ class CreateAccountApiView(APIView):
     permission_classes     = ()
 
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         messages_list = []
         account_info  = []
         error_list    = []
         status        = False
 
-        req = request.GET
+        req = request.POST
 
         if req.get('domain'):
             domain = req.get('domain')
@@ -48,7 +49,9 @@ class CreateAccountApiView(APIView):
                     'domain': domain
                 }
 
-            response = requests.get('http://127.0.0.1:8000/api/v1/create_account/', params=params)
+            nodo = Nodo.objects.all().order_by('total_accounts')[0]
+
+            response = requests.get('http://{nodo}:8000/api/v1/create_account/'.format(nodo=nodo.name), params=params)
             response = response.json()
 
             status        = response['status']

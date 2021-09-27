@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Python
+import socket
 import requests
 
 # Django
@@ -12,6 +13,10 @@ class Nexus(object):
 	def get_account_server(self, domain):
 
 		#Hardcodeado hasta la muerte xd
-		
-		return "nodo1.maheca.tk"
+		hostname = socket.gethostname()
+
+		aux = ''
+		for i in range(1, len(hostname.split('.'))):
+			aux += hostname.split('.')[i] + '.'
+		return "nodo1.{}".format(aux[:-1])
 		
