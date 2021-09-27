@@ -85,6 +85,8 @@ class PhpVersionApiView(APIView):
         version  = req.get('version')
         nexus    = Nexus()
         
+        print(domain)
+
         if not domain:
             response = {
                 'status'  : False,
