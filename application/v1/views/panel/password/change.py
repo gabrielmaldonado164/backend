@@ -35,8 +35,8 @@ class PasswordChangeApiView(APIView):
         actual_password = req.get('actual_password')
         password        = req.get('password')
         
-        server = Nodo.objects.get(name=Nexus().get_account_server(domain=domain))
-        
+        nexus = Nexus()
+        server = Nodo.objects.get(name=nexus.get_account_server(domain=domain))
         if server:
             params = {
                 'username' : username,
