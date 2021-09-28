@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'schemas',
     'v1',
     'scripts',
+    'tickets',
 ]
 
 MIDDLEWARE = [

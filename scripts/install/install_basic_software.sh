@@ -77,9 +77,6 @@ python3 /opt/backend/application/manage.py makemigrations schemas
 
 python3 /opt/backend/application/manage.py migrate
 
-<<<<<<< HEAD
-
-=======
 echo -e "[Unit]
 After=network.target
 
@@ -100,4 +97,3 @@ WantedBy=multi-user.target" > /etc/systemd/system/backend.service
 chmod 664 /etc/systemd/system/backend.service
 systemctl daemon-reload
 systemctl start backend.service
->>>>>>> 4ba17277b1baba730912b43f8110a1a15629518b

@@ -36,7 +36,7 @@ class AddNodesApiView(APIView):
             ipaddress = ipaddress
         )
         
-        nodo.save();
+        nodo.save()
 
         response = {
             'status'  : True,
