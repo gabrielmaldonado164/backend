@@ -93,7 +93,7 @@ class PhpIniApiView(APIView):
         domain          = req.get('domain')
         username        = req.get('username')
         version         = req.get('version')
-        php_ini         = req.get('php_ini ')
+        php_ini         = req.get('php_ini')
         nexus           = Nexus()
         
         if not domain:
